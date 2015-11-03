@@ -19,12 +19,12 @@ def longest(list):
             continue
     return max_long
 
-print(longest(tableData[0]))
+#print(longest(tableData[0])
 
-#colWidths = [0] * len(tableData[0])
-#print(colWidths)
 
-#column = '\n'.join(tableData[0])
-#print(column.rjust(5, '*'))
-#for i in range(len(tableData)):
-#    print('\n'.join(tableData[i]))
+colWidths = [0] * len(tableData[0])
+print(colWidths)
+
+
+
+print(tableData[0][0], tableData[1][0], tableData[2][0])
