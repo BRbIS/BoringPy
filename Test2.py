@@ -1,34 +1,35 @@
-# Найти самое длинное слово в спитке
+#! /usr/bin/python3
 
-tableData = [['apples', 'oranges', 'cherries', 'banana'],
-             ['Alice123456789', 'Bob', 'Carol', 'David'],
-             ['dogs', 'cats', 'moose', 'goose']]
+import re
+
+# check 8 char
+ch8Regex = re.compile(r'(.{8})+')
+#mo = ch8Regex.search('1234567, 2, 3123456789fgfgfgf, 4, 5, 6, 7, 8')
+#print('Phone number found: ' + mo.group())
+# check Lower\Upper case
+upRegex = re.compile(r'([A-Z])+')
+lowRegex = re.compile(r'([a-z])+')
+#mo1 = lowRegex.search('pasSword')
+#mo2 = lowRegex.search('PAsSWORD')
+#print('Phone number found: ' + mo2.group())
+# check one or more digits
+digRegex = re.compile(r'([0-9])+')
+#mo3 = digRegex.search('pasSwor1d')
+#print('Phone number found: ' + mo3.group())
 
 
-# find the longest string in each of the inner list
-# находит только в одном элементе списка
-def longest(list):
-    max_long = 0
-    for i in list:
-        #print(i, len(i))
-        if len(i) > max_long:
-            max_long = len(i)
-        else:
-            continue
-    return max_long
+text = 'pasS1            '
 
+print(ch8Regex.search(text))
 
-# идет по всем элементам списка и находит самое большое из всех
-def biggest(table):
-    max_long = 0
-    for i in range(len(table)):
-        for y in table[i]:
-            if len(y) > max_long:
-                max_long = len(y)
-            else:
-                continue
-    return max_long
-
-print(longest(tableData[0]))
-
-print(biggest(tableData))
+if ch8Regex.search(text) and upRegex.search(text) and lowRegex.search(text) and digRegex.search(text) is not None:
+    print('Password strong')
+else:
+    if ch8Regex.search(text) is None:
+        print('Need min 8 characters')
+    elif upRegex.search(text) is None:
+        print('None upper char')
+    elif lowRegex.search(text) is None:
+        print('None lower char')
+    elif digRegex.search(text) is None:
+        print('None digit char')

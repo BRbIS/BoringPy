@@ -1,35 +1,25 @@
 #! /usr/bin/python3
 
-import re
+def isPasswordStrong(text):
+    import re
+    # TODO убрать пробелы в начале и конце текста
+    # TODO решить проблемму с пробелами внутри текста, нужно их убрать или игнорировать при проверке
+    ch8Regex = re.compile(r'(.{8})+')  # проверяем, что в пароле минимум 8 символов
+    upRegex = re.compile(r'([A-Z])+')  # проверка наличия хотябы одного символа в верхнем регистре
+    lowRegex = re.compile(r'([a-z])+')  # проверка наличия хотябы одного символа в верхнем регистре
+    digRegex = re.compile(r'([0-9])+')  # проверка наличия хотябы одного числового символа
 
-# check 8 char
-ch8Regex = re.compile(r'(.{8})+')
-#mo = ch8Regex.search('1234567, 2, 3123456789fgfgfgf, 4, 5, 6, 7, 8')
-#print('Phone number found: ' + mo.group())
-# check Lower\Upper case
-upRegex = re.compile(r'([A-Z])+')
-lowRegex = re.compile(r'([a-z])+')
-#mo1 = lowRegex.search('pasSword')
-#mo2 = lowRegex.search('PAsSWORD')
-#print('Phone number found: ' + mo2.group())
-# check one or more digits
-digRegex = re.compile(r'([0-9])+')
-#mo3 = digRegex.search('pasSwor1d')
-#print('Phone number found: ' + mo3.group())
+    if ch8Regex.search(text) and upRegex.search(text) and lowRegex.search(text) and digRegex.search(text) is not None:
+        print('Password strong')
+    else:
+        if ch8Regex.search(text) is None:
+            print('Need min 8 characters')
+        elif upRegex.search(text) is None:
+            print('None upper char')
+        elif lowRegex.search(text) is None:
+            print('None lower char')
+        elif digRegex.search(text) is None:
+            print('None digit char')
 
 
-text = 'pasS1            '
-
-print(ch8Regex.search(text))
-
-if ch8Regex.search(text) and upRegex.search(text) and lowRegex.search(text) and digRegex.search(text) is not None:
-    print('Password strong')
-else:
-    if ch8Regex.search(text) is None:
-        print('Need min 8 characters')
-    elif upRegex.search(text) is None:
-        print('None upper char')
-    elif lowRegex.search(text) is None:
-        print('None lower char')
-    elif digRegex.search(text) is None:
-        print('None digit char')
+isPasswordStrong('paS1sword')
