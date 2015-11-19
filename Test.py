@@ -1,33 +1,24 @@
 __author__ = 'agorgoma'
 
-import re
+
+def isPasswordStrong(text):
+    import re
+    ch8Regex = re.compile(r'(.{8})+')  # проверяем, что в пароле минимум 8 символов
+    upRegex = re.compile(r'([A-Z])+')  # проверка наличия хотябы одного символа в верхнем регистре
+    lowRegex = re.compile(r'([a-z])+')  # проверка наличия хотябы одного символа в верхнем регистре
+    digRegex = re.compile(r'([0-9])+')  # проверка наличия хотябы одного числового символа
+
+    if ch8Regex.search(text) and upRegex.search(text) and lowRegex.search(text) and digRegex.search(text) is not None:
+        print('Password strong')
+    else:
+        if ch8Regex.search(text) is None:
+            print('Need min 8 characters')
+        elif upRegex.search(text) is None:
+            print('None upper char')
+        elif lowRegex.search(text) is None:
+            print('None lower char')
+        elif digRegex.search(text) is None:
+            print('None digit char')
 
 
-phoneRegex = re.compile(r'''(
-    (\d{3}|\(\d{3}\))?                 # area code
-    (\s|-|\.)?                        # separator
-    (\d{3})                           # first 3 digits
-    (\s|-|\.)                         # separator
-    (\d{4})                           # last 4 digits
-    (\s*(ext|x|ext.)\s*(\d{2,5}))?    # extension
-)''', re.VERBOSE)
-
-text = 'My number is 415-555-4242, (123)345-7890, 444 333 2222, 111 2222'
-matches = []
-for groups in phoneRegex.findall(text):
-    phoneNum = '-'.join([groups[1], groups[3], groups[5]])
-    if groups[8] != '':
-        phoneNum += ' x' + groups[8]
-    matches.append(phoneNum)
-    #print(matches)
-    #print(groups)
-    #print(groups[0])
-    #print(groups[1])
-    #print(groups[3])
-    #print(groups[5])
-    #print(groups[8])
-    #print(groups[4])
-
-#print(phoneRegex.findall(text))
-print(matches)
-print(matches[1])
+isPasswordStrong('paS1sword')
