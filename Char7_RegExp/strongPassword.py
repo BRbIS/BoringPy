@@ -1,5 +1,7 @@
 #! /usr/bin/python3
 
+# TODO Добавить код для ввода пользователем пароля
+
 def isPasswordStrong(text):
     import re
     # TODO убрать пробелы в начале и конце текста
