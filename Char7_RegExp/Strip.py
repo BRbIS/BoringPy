@@ -2,21 +2,22 @@
 # аналог функции strip(), которая убирает пробелы в начале и
 # конце строки, но реализованная с помощью регулярных выражений.
 
+def stripAllReg(text):
+    import re
+    word = ''
+    stripRegex = re.compile(r'^\s|\s$')
+    for i in text:
+        mo = stripRegex.sub('', i)
+        word += mo
+    return word
 
-import re
 
-text = ' spacer '
+def stripReg(text, char=''):
+    import re
+    stripRegex = re.compile(r'^(\s)*|(\s)*$')
+    mo1 = stripRegex.sub(char, text)
+    return mo1
 
-stripRegex = re.compile(r'^\s|\s$')
-#mo = stripRegex.sub('.', text)
-#s = mo.group()
-#print(text)
-#print(mo)
-
-for i in text:
-    if stripRegex.search(i) is True:
-        i = stripRegex.sub('.', i)
-        print(i)
-    else:
-        continue
+print(stripAllReg('  spa ser '))
+print(stripReg('    spa ser   ', 'a'))
 
