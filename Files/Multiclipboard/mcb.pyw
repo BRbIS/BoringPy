@@ -5,6 +5,7 @@
 #        py.exe mcb.pyw <keyword> - Loads keyword to clipboard.
 #        py.exe mcb.pyw list - Loads all keywords to clipboard.
 #        py.exe mcb.pyw delete <keyword> - Delete keyword from clipboard.
+#        py.exe mcb.pyw delete - Delete all keywords from clipboard.
 
 import shelve
 import pyperclip
