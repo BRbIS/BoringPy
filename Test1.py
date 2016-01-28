@@ -1,9 +1,14 @@
 
-def strip(text):
-    import re
-    stripRegex = re.compile(r'^(\s)*|(\s)*$')
-    mo1 = stripRegex.sub('', text)
-    return mo1
+x = 25
+epsilon = 0.01
+step = 0.1
+guess = 0.0
 
-print(strip(' spa ser '))
-print(strip('  spa ser     '))
+while guess <= x:
+    if abs(guess**2 -x) >= epsilon:
+        guess += step
+
+if abs(guess**2 - x) >= epsilon:
+    print ('failed')
+else:
+    print ('succeeded: ' + str(guess))
